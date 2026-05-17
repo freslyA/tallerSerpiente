@@ -3,6 +3,9 @@
 const canvas = document.getElementById("canvasJuego");
 const ctx = canvas.getContext("2d");
 const TAMAÑO_CELDA = 25
+let comidaX = generarAleatorio(0,canvas.width-TAMAÑO_CELDA,TAMAÑO_CELDA)
+let comidaY = generarAleatorio(0,canvas.height-TAMAÑO_CELDA,TAMAÑO_CELDA)
+let puntaje=0
 const serpiente=[
   {x:5,y:5},
   {x:10,y:10},
@@ -26,6 +29,7 @@ function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
   pintarSerpiente()
+  pintarComida()
 }
 function dibujarTablero(){ 
 for (i = 0; i < canvas.width; i += TAMAÑO_CELDA) {
@@ -70,25 +74,33 @@ function moverDerecha(){
   let elemento=serpiente[0]
   let movimiento={x:elemento.x+1,y:elemento.y}
   serpiente.unshift(movimiento)
-  serpiente.pop()
+  if(atraparComida()==false){
+    serpiente.pop()
+  }
 }
 function moverIzquierda(){
   let elemento=serpiente[0]
   let movimiento={x:elemento.x-1,y:elemento.y}
   serpiente.unshift(movimiento)
-  serpiente.pop()
+   if(atraparComida()==false){
+    serpiente.pop()
+  }
 }
 function moverArriba(){
   let elemento=serpiente[0]
   let movimiento={x:elemento.x,y:elemento.y-1}
   serpiente.unshift(movimiento)
-  serpiente.pop()
+   if(atraparComida()==false){
+    serpiente.pop()
+  }
 }
 function moverAbajo(){
   let elemento=serpiente[0]
   let movimiento={x:elemento.x,y:elemento.y+1}
   serpiente.unshift(movimiento)
-  serpiente.pop()
+  if(atraparComida()==false){
+    serpiente.pop()
+  }
 }
 function cambiarDireccion(direcion){
   if(direcion=="derecha"){
@@ -126,5 +138,27 @@ function moverSerpiente(){
   else if(direccionActual=="arriba"){
     moverArriba()
     dibujarTodo()
+  }
+}
+function pintarComida(){
+  ctx.fillStyle="red"
+  ctx.fillRect(comidaX,comidaY,TAMAÑO_CELDA,TAMAÑO_CELDA)
+}
+function generarAleatorio(min, max, salto){
+  let numeros = []
+  for(let i = min; i <= max; i += salto){
+    numeros.push(i)
+  }
+  let posicion = Math.floor(Math.random() * numeros.length)
+  return numeros[posicion]
+}
+function atraparComida(){
+  let cabeza = serpiente[0]
+  let cabezaX = cabeza.x * TAMAÑO_CELDA
+  let cabezaY = cabeza.y * TAMAÑO_CELDA
+  if(cabezaX == comidaX && cabezaY == comidaY){
+    return true
+  }else{
+    return false
   }
 }
