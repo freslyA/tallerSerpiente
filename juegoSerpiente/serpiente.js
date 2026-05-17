@@ -8,7 +8,8 @@ const serpiente=[
   {x:10,y:10},
   {x:8,y:0}
 ]
-
+let intervaloSerpiente
+let direccionActual="derecha"
 
 // Primera pintura del juego al cargar la página
 dibujarTodo();
@@ -65,4 +66,65 @@ function pintarSerpiente(){
     }
   }
 }
-
+function moverDerecha(){
+  let elemento=serpiente[0]
+  let movimiento={x:elemento.x+1,y:elemento.y}
+  serpiente.unshift(movimiento)
+  serpiente.pop()
+}
+function moverIzquierda(){
+  let elemento=serpiente[0]
+  let movimiento={x:elemento.x-1,y:elemento.y}
+  serpiente.unshift(movimiento)
+  serpiente.pop()
+}
+function moverArriba(){
+  let elemento=serpiente[0]
+  let movimiento={x:elemento.x,y:elemento.y-1}
+  serpiente.unshift(movimiento)
+  serpiente.pop()
+}
+function moverAbajo(){
+  let elemento=serpiente[0]
+  let movimiento={x:elemento.x,y:elemento.y+1}
+  serpiente.unshift(movimiento)
+  serpiente.pop()
+}
+function cambiarDireccion(direcion){
+  if(direcion=="derecha"){
+    direccionActual="derecha"
+  }
+  else if(direcion=="izquierda"){
+    direccionActual="izquierda"
+  }
+  else if(direcion=="abajo"){
+    direccionActual="abajo"
+  }
+  else if(direcion=="arriba"){
+    direccionActual="arriba"
+  }
+}
+function iniciarJuego(){
+  intervaloSerpiente=setInterval(moverSerpiente,1000)
+}
+function pausarJuego(){
+  clearInterval(intervaloSerpiente)
+}
+function moverSerpiente(){
+ if(direccionActual=="derecha"){
+    moverDerecha()
+    dibujarTodo()
+  }
+  else if(direccionActual=="izquierda"){
+    moverIzquierda()
+    dibujarTodo()
+  }
+  else if(direccionActual=="abajo"){
+    moverAbajo()
+    dibujarTodo()
+  }
+  else if(direccionActual=="arriba"){
+    moverArriba()
+    dibujarTodo()
+  }
+}
