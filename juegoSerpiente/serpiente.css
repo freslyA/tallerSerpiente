@@ -1,142 +1,316 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: Arial, Helvetica, sans-serif;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
 }
 
-body {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
+body{
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:flex-start;
+
+    padding:20px;
+
+    font-family:'Courier New', monospace;
+
+    background:
+    radial-gradient(circle at top, #1a1a2e, #090909);
+
+    overflow-x:hidden;
 }
 
-.contenedor-juego {
-    width: 100%;
-    max-width: 720px;
-    background: #111827;
-    border-radius: 20px;
-    padding: 24px;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
-    text-align: center;
+/* CONTENEDOR */
+
+.contenedor-juego{
+    margin-top:20px;
+    margin-bottom:20px;
+    width:100%;
+    max-width:560px;
+
+    padding:22px;
+
+    border-radius:22px;
+
+    background:#111827;
+
+    border:3px solid #ff00ff;
+
+    box-shadow:
+    0 0 10px #ff00ff,
+    0 0 25px rgba(255,0,255,0.4);
+
+    text-align:center;
 }
 
-h1 {
-    margin-bottom: 10px;
-    font-size: 32px;
-    color: #22c55e;
+/* TITULO */
+
+h1{
+
+    font-size:38px;
+
+    margin-bottom:10px;
+
+    color:#00ffff;
+
+    letter-spacing:2px;
+
+    text-shadow:
+    0 0 8px #00ffff,
+    0 0 15px #00ffff;
 }
 
-.descripcion {
-    margin-bottom: 18px;
-    color: #cbd5e1;
-    line-height: 1.5;
+/* DESCRIPCION */
+
+.descripcion{
+
+    color:#cbd5e1;
+
+    margin-bottom:20px;
+
+    font-size:16px;
+
+    line-height:1.5;
 }
 
-.panel-info {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    margin-bottom: 16px;
-    flex-wrap: wrap;
+/* PANEL */
+
+.panel-info{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:15px;
+
+    flex-wrap:wrap;
+
+    margin-bottom:20px;
 }
 
-.tarjeta-info {
-    flex: 1;
-    min-width: 150px;
-    background: #999b9c46;
-    padding: 14px;
-    border-radius: 14px;
-    border: 1px solid #374151;
+.tarjeta-info{
+
+    background:#1e293b;
+
+    border:2px solid #00ffff;
+
+    border-radius:16px;
+
+    padding:14px 20px;
+
+    min-width:150px;
+
+    box-shadow:0 0 10px rgba(0,255,255,0.3);
 }
 
-.tarjeta-info span {
-    display: block;
-    font-size: 14px;
-    color: #94a3b8;
-    margin-bottom: 4px;
+.tarjeta-info span{
+
+    display:block;
+
+    color:#94a3b8;
+
+    margin-bottom:5px;
+
+    font-size:14px;
 }
 
-.tarjeta-info strong {
-    font-size: 24px;
-    color: #facc15;
+.tarjeta-info strong{
+
+    color:#ffe600;
+
+    font-size:26px;
+
+    text-shadow:0 0 8px #ffe600;
 }
 
-canvas {
-    width: 100%;
-    max-width: 500px;
-    background: #4c4d535e;
-    border: 4px solid #b56f1f;
-    border-radius: 16px;
-    display: block;
-    margin: 0 auto 20px auto;
+/* CANVAS */
+
+canvas{
+
+    width:100%;
+
+    max-width:420px;
+
+    aspect-ratio:1/1;
+
+    display:block;
+
+    margin:auto;
+
+    background:#0b1020;
+
+    border:4px solid #00ffff;
+
+    border-radius:18px;
+
+    box-shadow:
+    0 0 15px rgba(0,255,255,0.4),
+    inset 0 0 20px rgba(0,255,255,0.08);
 }
 
-.controles {
-    display: grid;
-    grid-template-columns: repeat(3, 90px);
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 18px;
+/* CONTROLES */
+
+.controles{
+
+    display:grid;
+
+    grid-template-columns:repeat(3,80px);
+
+    gap:10px;
+
+    justify-content:center;
+
+    margin-top:22px;
+
+    margin-bottom:20px;
 }
 
-.controles button,
-.acciones button {
-    border: none;
-    border-radius: 12px;
-    padding: 12px 16px;
-    background: #22c55e;
-    color: #052e16;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.2s;
+button{
+
+    border:none;
+
+    border-radius:14px;
+
+    padding:12px;
+
+    font-size:18px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:0.2s;
+
+    background:#ff00ff;
+
+    color:white;
+
+    box-shadow:0 0 10px rgba(255,0,255,0.5);
 }
 
-.controles button:hover,
-.acciones button:hover {
-    transform: scale(1.05);
-    background: #86efac;
+button:hover{
+
+    transform:scale(1.08);
+
+    background:#00ffff;
+
+    color:black;
+
+    box-shadow:
+    0 0 10px #00ffff,
+    0 0 20px #00ffff;
 }
 
-.vacio {
-    visibility: hidden;
+button:active{
+    transform:scale(0.95);
 }
 
-.acciones {
-    display: flex;
-    justify-content: center;
-    gap: 12px;
-    flex-wrap: wrap;
+.vacio{
+    visibility:hidden;
 }
 
-.acciones .secundario {
-    background: #38bdf8;
-    color: #082f49;
+/* BOTONES ABAJO */
+
+.acciones{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:14px;
+
+    flex-wrap:wrap;
 }
 
-.mensaje {
-    margin-top: 14px;
-    color: #e2e8f0;
-    min-height: 24px;
-    font-weight: bold;
+.secundario{
+
+    background:#00ffff;
+
+    color:black;
+
+    box-shadow:0 0 10px rgba(0,255,255,0.5);
 }
 
-@media (max-width: 520px) {
-    h1 {
-        font-size: 24px;
+.secundario:hover{
+
+    background:#ffe600;
+
+    color:black;
+}
+
+/* MENSAJE */
+
+.mensaje{
+
+    margin-top:18px;
+
+    color:#f8fafc;
+
+    font-size:17px;
+
+    text-shadow:0 0 8px rgba(255,255,255,0.5);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:700px){
+
+    .contenedor-juego{
+        padding:18px;
     }
 
-    .controles {
-        grid-template-columns: repeat(3, 75px);
+    h1{
+        font-size:28px;
     }
 
-    .controles button,
-    .acciones button {
-        padding: 10px;
+    .descripcion{
+        font-size:14px;
     }
+
+    .controles{
+        grid-template-columns:repeat(3,70px);
+    }
+
+    button{
+        padding:10px;
+        font-size:16px;
+    }
+
+    .tarjeta-info{
+        min-width:120px;
+    }
+
+    .tarjeta-info strong{
+        font-size:22px;
+    }
+
+}
+
+@media(max-width:500px){
+
+    body{
+        padding:10px;
+    }
+
+    .contenedor-juego{
+        padding:14px;
+    }
+
+    h1{
+        font-size:24px;
+    }
+
+    .controles{
+        grid-template-columns:repeat(3,60px);
+        gap:8px;
+    }
+
+    button{
+        font-size:14px;
+        padding:8px;
+    }
+
 }
