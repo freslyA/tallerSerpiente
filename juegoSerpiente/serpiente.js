@@ -6,10 +6,11 @@ const TAMAÑO_CELDA = 25
 let comidaX = generarAleatorio(0,canvas.width-TAMAÑO_CELDA,TAMAÑO_CELDA)
 let comidaY = generarAleatorio(0,canvas.height-TAMAÑO_CELDA,TAMAÑO_CELDA)
 let puntaje=0
-const serpiente=[
+let velocidad=500
+let serpiente=[
   {x:5,y:5},
-  {x:10,y:10},
-  {x:8,y:0}
+  {x:4,y:5},
+  {x:3,y:5}
 ]
 let intervaloSerpiente
 let direccionActual="derecha"
@@ -26,10 +27,13 @@ function limpiarCanvas() {
 }
 
 function dibujarTodo() {
+  let puntajeTxt=document.getElementById("puntaje")
+  puntajeTxt.innerText=puntaje
   limpiarCanvas();
   dibujarTablero();
   pintarSerpiente()
   pintarComida()
+  gameOver()
 }
 function dibujarTablero(){ 
 for (i = 0; i < canvas.width; i += TAMAÑO_CELDA) {
@@ -117,7 +121,8 @@ function cambiarDireccion(direcion){
   }
 }
 function iniciarJuego(){
-  intervaloSerpiente=setInterval(moverSerpiente,1000)
+  intervaloSerpiente=setInterval(moverSerpiente,velocidad)
+  cambiarVelocidad()
 }
 function pausarJuego(){
   clearInterval(intervaloSerpiente)
@@ -157,8 +162,86 @@ function atraparComida(){
   let cabezaX = cabeza.x * TAMAÑO_CELDA
   let cabezaY = cabeza.y * TAMAÑO_CELDA
   if(cabezaX == comidaX && cabezaY == comidaY){
+    puntaje+=1
+    comidaX = generarAleatorio(
+      0,
+      canvas.width - TAMAÑO_CELDA,
+      TAMAÑO_CELDA
+    )
+    comidaY = generarAleatorio(
+      0,
+      canvas.height - TAMAÑO_CELDA,
+      TAMAÑO_CELDA
+    )
     return true
-  }else{
-    return false
+  }
+  return false
+}
+function gameOver(){
+  let cabeza = serpiente[0]
+  let x = cabeza.x * TAMAÑO_CELDA
+  let y = cabeza.y * TAMAÑO_CELDA
+  // choque con paredes
+  if(
+    x >= canvas.width ||
+    cabeza.x < 0 ||
+    y >= canvas.height ||
+    cabeza.y < 0
+  ){
+    alert("GAME OVER")
+    clearInterval(intervaloSerpiente)
+  }
+  // choque consigo misma
+  for(let i = 1; i < serpiente.length; i++){
+    let parte = serpiente[i]
+    if(cabeza.x == parte.x && cabeza.y == parte.y){
+      alert("GAME OVER")
+      clearInterval(intervaloSerpiente)
+    }
+  }
+
+}
+function reiniciarJuego(){
+  // detener juego anterior
+  clearInterval(intervaloSerpiente)
+  // reiniciar velocidad
+  velocidad = 500
+  // reiniciar dirección
+  direccionActual = "derecha"
+  // reiniciar puntaje
+  puntaje = 0
+  // reiniciar serpiente
+  serpiente.length = 0
+  serpiente.push(
+    {x:5,y:5},
+    {x:4,y:5},
+    {x:3,y:5}
+  )
+  // nueva comida
+  comidaX = generarAleatorio(
+    0,
+    canvas.width - TAMAÑO_CELDA,
+    TAMAÑO_CELDA
+  )
+  comidaY = generarAleatorio(
+    0,
+    canvas.height - TAMAÑO_CELDA,
+    TAMAÑO_CELDA
+  )
+  // limpiar y pintar
+  limpiarCanvas()
+  dibujarTodo()
+  // iniciar nuevamente
+  intervaloSerpiente = setInterval(
+    moverSerpiente,
+    velocidad
+  )
+}
+function cambiarVelocidad(){
+  if(puntaje==5){
+    velocidad=300
+  }
+  else if(puntaje==7){
+    velocidad==150
   }
 }
