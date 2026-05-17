@@ -20,6 +20,7 @@ function limpiarCanvas() {
 function dibujarTodo() {
   limpiarCanvas();
   dibujarTablero();
+  pintarParte(5,5)
 }
 function dibujarTablero(){ 
 for (i = 0; i < canvas.width; i += TAMAÑO_CELDA) {
@@ -36,6 +37,12 @@ for (i = 0; i < canvas.height; i += TAMAÑO_CELDA) {
   ctx.lineTo(i,canvas.height)
   ctx.stroke()
 }
+}
+function pintarParte(lineaX,lineaY){
+  ctx.fillStyle="blue"
+  ctx.fillRect(lineaX*TAMAÑO_CELDA,lineaY*TAMAÑO_CELDA,TAMAÑO_CELDA,TAMAÑO_CELDA)
+  ctx.strokeStyle="white"
+  ctx.strokeRect(lineaX*TAMAÑO_CELDA,lineaY*TAMAÑO_CELDA,TAMAÑO_CELDA,TAMAÑO_CELDA)
 }
 
 
