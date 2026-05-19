@@ -106,19 +106,19 @@ function moverAbajo(){
     serpiente.pop()
   }
 }
-function cambiarDireccion(direcion){
-  if(direcion=="derecha"){
-    direccionActual="derecha"
+function cambiarDireccion(direccion){
+
+  // bloquear movimientos contrarios
+  if(
+    (direccionActual == "derecha" && direccion == "izquierda") ||
+    (direccionActual == "izquierda" && direccion == "derecha") ||
+    (direccionActual == "arriba" && direccion == "abajo") ||
+    (direccionActual == "abajo" && direccion == "arriba")
+  ){
+    return
   }
-  else if(direcion=="izquierda"){
-    direccionActual="izquierda"
-  }
-  else if(direcion=="abajo"){
-    direccionActual="abajo"
-  }
-  else if(direcion=="arriba"){
-    direccionActual="arriba"
-  }
+
+  direccionActual = direccion
 }
 function iniciarJuego(){
   intervaloSerpiente=setInterval(moverSerpiente,velocidad)
@@ -242,6 +242,6 @@ function cambiarVelocidad(){
     velocidad=300
   }
   else if(puntaje==7){
-    velocidad==150
+    velocidad=150
   }
 }
